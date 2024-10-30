@@ -8,7 +8,7 @@
 - React Router
 - Axios
 
-# 2. Project structrue
+# 3. Project structrue
 
 ```
 └── 📁My_basic_React_Shadcn_base
