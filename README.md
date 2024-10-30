@@ -1,5 +1,5 @@
 # 1. About
-- A page that help guest book appointment for Kiosk Receptionist system
+- This is a simple base that is built for React and Shadcn usage. Also include Framer motion for additional animation
 
 # 2. Libraries 
 - React
@@ -11,23 +11,21 @@
 # 2. Project structrue
 
 ```
-└── 📁Kiosk_Appointment_Booking
+└── 📁My_basic_React_Shadcn_base
     └── 📁public
+        └── vite.svg
     └── 📁src
         └── 📁assets
-            └── 📁fonts
-                // Custom fonts not from Google
+            └── 📁fonts // Add your custom font here
                 └── 📁ClashDisplay
-                ...
-            └── 📁images
-            └── 📁videos
+            └── 📁images 
             └── react.svg
         └── 📁components
-            // Self-created components
+            // Your components
+            └── 📁ConfirmDialog
+                └── ConfirmDialog.tsx
             └── 📁ReuseDonutChart
                 └── ReuseDonutChart.tsx
-            └── 📁ReusePieChart
-                └── ReusePieChart.tsx
             ...
             // Shadcn components
             └── 📁ui
@@ -37,25 +35,27 @@
                 ...
         └── 📁contexts
         └── 📁hooks
-        // Layouts for different types of page
         └── 📁layouts
+            // layouts for diffrent types of page
             └── 📁RootLayout
                 └── RootLayout.tsx
         └── 📁lib
             └── utils.ts
-        // Interfaces for components and Columns for table,..
-        └── 📁models
-        // Map for routes
-        └── 📁pages
+        └── 📁models // interfaces and columns define for components
+            └── 📁ConfirmDialog
+                └── type.d.ts
+            └── 📁ReuseDonutChart
+                └── type.d.ts
+            ...
+        └── 📁pages 
             └── 📁Home
                 └── Home.tsx
         └── 📁router
             └── router.tsx
-            └── routerConfig.ts // route constants
+            └── routerConfig.ts //
         └── 📁utils
-            └── 📁Helper
-                └── 📁Home
-                    └── helper.ts
+            └── 📁Helper // if a component have a complicated helper function or it cant be reusable much, 
+                         // put them in a Folder with the component's name
                 └── common.ts
             └── constant.ts
             └── ip.ts
@@ -66,14 +66,14 @@
         └── vite-env.d.ts
     └── .env
     └── .gitignore
-    └── components.json
+    └── components.json // Shadcn's thing
     └── eslint.config.js
     └── index.html
     └── package-lock.json
     └── package.json
     └── postcss.config.js
     └── README.md
-    └── tailwind.config.js
+    └── tailwind.config.js // Modify tailwind theme
     └── tsconfig.app.json
     └── tsconfig.json
     └── tsconfig.node.json
