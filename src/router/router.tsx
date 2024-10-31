@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouteObject } from "react-router-dom";
 import routes from "./routerConfig";
 
-import RootLayout from "@/layouts/RootLayout/RootLayout";
+import RootLayout from "@/layouts/RootLayout";
 
 import Home from "@/pages/Home/Home";
 
