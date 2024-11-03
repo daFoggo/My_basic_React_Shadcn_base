@@ -1,4 +1,5 @@
-import { ChevronLeft, Sparkles } from "lucide-react";
+import { FaReact } from "react-icons/fa"
+import { ChevronUp, LogOut, User2, UserPen } from "lucide-react"
 import {
   Sidebar,
   SidebarContent,
@@ -6,20 +7,48 @@ import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
-  SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarTrigger,
-} from "@/components/ui/sidebar";
-import ThemeToggle from "../ThemeToggle";
-
-import { menuItems } from "./constant";
-import { Separator } from "@/components/ui/separator";
+} from "@/components/ui/sidebar"
+import ThemeToggle from "../ThemeToggle"
+import { menuItems } from "./constant"
+import { Separator } from "@/components/ui/separator"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu"
+import { useNavigate } from "react-router-dom"
+import { useEffect, useState } from "react"
 
 const RootSidebar = () => {
+  const [user, setUser] = useState({
+    id: "",
+    username: "User name",
+    email: "",
+    fullName: "",
+  })
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    const user = localStorage.getItem("user")
+    if (user) {
+      setUser(JSON.parse(user))
+    }
+  }, [])
+
+  const handleLogout = (e: any) => {
+    e.preventDefault()
+    localStorage.removeItem("token")
+    navigate("/auth/login")
+  }
+
   return (
-    <Sidebar collapsible="icon">
+    <Sidebar collapsible="icon" className="hidden md:flex">
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupContent>
@@ -27,8 +56,10 @@ const RootSidebar = () => {
               <SidebarMenuItem key="header">
                 <SidebarMenuButton className="lg" asChild>
                   <a href="/">
-                    <Sparkles size={24} />
-                    <span className="text-xl font-semibold font-clash">React Shadcn base</span>
+                    <FaReact size={24} />
+                    <span className="text-xl font-semibold font-clash">
+                      React Shadcn base
+                    </span>
                   </a>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -57,13 +88,42 @@ const RootSidebar = () => {
 
       <SidebarFooter>
         <SidebarMenu>
-          <ThemeToggle />
+          <SidebarMenuItem>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <SidebarMenuButton>
+                  <User2 /> {user.username}
+                  <ChevronUp className="ml-auto" />
+                </SidebarMenuButton>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent
+                side="top"
+                className="w-[--radix-popper-anchor-width]"
+              >
+                <DropdownMenuItem>
+                  <span className="flex items-center">
+                    <UserPen className="mr-2 h-4 w-4" />
+                    My profile
+                  </span>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <ThemeToggle />
+                </DropdownMenuItem>
+                <DropdownMenuItem onSelect={handleLogout}>
+                  <span className="flex items-center">
+                    <LogOut className="mr-2 h-4 w-4" />
+                    Logout
+                  </span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>
 
       <SidebarTrigger></SidebarTrigger>
     </Sidebar>
-  );
-};
+  )
+}
 
-export default RootSidebar;
+export default RootSidebar

@@ -1,30 +1,50 @@
-import { Outlet } from "react-router-dom";
-import { Toaster } from "@/components/ui/sonner";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import RootSidebar from "@/components/RootSidebar";
+import { Outlet, useNavigate } from "react-router-dom"
+import { Toaster } from "@/components/ui/sonner"
+import { SidebarProvider } from "@/components/ui/sidebar"
+import RootSidebar from "@/components/RootSidebar"
+import MobileRootNavbar from "@/components/MobileRootNavBar"
+import { isTokenValid } from "@/utils/Helper/common"
 
 const RootLayout = () => {
+  const navigate = useNavigate()
+
+  // useEffect(() => {
+  //   checkToken()
+  // }, [navigate])
+
+  const checkToken = async () => {
+    const token = localStorage.getItem("token")
+    const tokenCheck = await isTokenValid(token)
+    if (tokenCheck.success) {
+      navigate("/dashboard")
+    } else {
+      navigate("/auth/login")
+    }
+  }
+
   return (
     <SidebarProvider>
-      <div className="flex min-h-screen min-w-full">
+      <div className="flex flex-col md:flex-row min-h-screen w-full">
+        <MobileRootNavbar />
         <RootSidebar />
-        <div className="flex flex-col flex-grow">
-          <main className="flex-grow p-6">
+        <main className="flex-grow w-full p-6">
+          <div className="w-full">
             <Outlet />
-            <Toaster
-              toastOptions={{
-                style: {
-                  color: "#4893f4",
-                },
-              }}
-              position="top-center"
-            />
-          </main>
-          <footer className="z-10">{/* Footer content */}</footer>
-        </div>
+          </div>
+          <Toaster
+            toastOptions={{
+              style: {
+                color: "#752ceb",
+              },
+              className: "z-[1000]",
+            }}
+            position="top-center"
+          />
+        </main>
+        <footer className="mt-auto py-4 px-6 border-t bg-background z-10"></footer>
       </div>
     </SidebarProvider>
-  );
-};
+  )
+}
 
-export default RootLayout;
+export default RootLayout

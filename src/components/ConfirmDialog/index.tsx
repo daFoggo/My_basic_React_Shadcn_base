@@ -26,29 +26,20 @@ const ConfirmDialog = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[425px] font-inter">
+      <DialogContent className="sm:max-w-[425px]" onOpenAutoFocus={(e) => e.preventDefault()}>
         <DialogHeader>
-          <DialogTitle className="font-semibold text-violet-400">
+          <DialogTitle className="text-xl font-bold text-primary">
             {title}
           </DialogTitle>
-          <DialogDescription className="py-4 font-semibold">
+          <DialogDescription className="font-semibold">
             {message}
           </DialogDescription>
         </DialogHeader>
-        <DialogFooter className="flex gap-2">
-          <Button
-            variant="outline"
-            onClick={onClose}
-            className="flex-1 border-violet-400 bg-violet-50 text-violet-400 hover:text-violet-500 hover:bg-violet-100 font-semibold"
-          >
+        <DialogFooter className="flex">
+          <Button variant="outline" onClick={onClose}>
             {cancelText}
           </Button>
-          <Button
-            onClick={handleConfirm}
-            className="flex-1  bg-violet-400 hover:text-violet-50 hover:bg-violet-500 font-semibold"
-          >
-            {confirmText}
-          </Button>
+          <Button onClick={handleConfirm}>{confirmText}</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
