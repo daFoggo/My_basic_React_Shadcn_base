@@ -23,9 +23,9 @@
         └── 📁components
             // Your components
             └── 📁ConfirmDialog
-                └── ConfirmDialog.tsx
+                └── index.tsx
             └── 📁ReuseDonutChart
-                └── ReuseDonutChart.tsx
+                └── index.tsx
             ...
             // Shadcn components
             └── 📁ui
@@ -49,7 +49,7 @@
             ...
         └── 📁pages 
             └── 📁Home
-                └── Home.tsx
+                └── index.tsx
         └── 📁router
             └── router.tsx
             └── routerConfig.ts //
