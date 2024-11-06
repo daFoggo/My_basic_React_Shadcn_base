@@ -27,7 +27,7 @@ const RootLayout = () => {
       <div className="flex flex-col md:flex-row min-h-screen w-full">
         <MobileRootNavbar />
         <RootSidebar />
-        <main className="flex-grow w-full p-6">
+        <main className="flex-grow w-full">
           <div className="w-full">
             <Outlet />
           </div>
@@ -41,7 +41,6 @@ const RootLayout = () => {
             position="top-center"
           />
         </main>
-        <footer className="mt-auto py-4 px-6 border-t bg-background z-10"></footer>
       </div>
     </SidebarProvider>
   )

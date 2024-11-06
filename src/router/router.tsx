@@ -7,6 +7,7 @@ import AuthLayout from "@/layouts/AuthLayout";
 import Dashboard from "@/pages/Dashboard";
 import Register from "@/pages/Register";
 import Login from "@/pages/Login";
+import MyProfile from "@/pages/MyProfile";
 
 const routeLayout: RouteObject[] = [
   {
@@ -21,6 +22,10 @@ const routeLayout: RouteObject[] = [
         path: routes.dashboard,
         element: <Dashboard />,
       },
+      {
+        path: routes.myProfile,
+        element: <MyProfile />,
+      }
     ],
   },
   {

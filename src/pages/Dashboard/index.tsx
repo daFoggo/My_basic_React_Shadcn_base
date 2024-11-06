@@ -3,9 +3,10 @@ import { Separator } from "@/components/ui/separator";
 
 const Dashboard = () => {
   return (
-    <div className="flex flex-col min-h-screen">
-      <div className="space-y-2 py-3 px-4 sm:p-0 sm:py-4">
+    <div className="flex flex-col min-h-screen w-full">
+      <div className="px-6 py-4">
         <ReuseBreadcrumb
+          origin={{ name: "Main", link: "/" }}
           pageList={[{ name: "Dashboard", link: "/dashboard" }]}
         />
         <h1 className="font-semibold text-lg sm:text-xl">Dashboard</h1>
